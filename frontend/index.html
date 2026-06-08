@@ -1,0 +1,364 @@
+<!   TYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEERAKSH</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script src="https://unpkg.com/i18next@latest/dist/umd/i18next.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+
+<body class="m-0 font-sans">
+
+  <!-- Navbar -->
+  <nav class="text-white sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="text-4xl font-extrabold tracking-wider">NEERAKSH</div>
+
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="#about" class="hover:text-blue-300 text-lg" data-i18n="navbar.about">About</a>
+          <a href="#projects" class="hover:text-blue-300 text-lg" data-i18n="navbar.projects">Projects</a>
+          <a href="#dashboard" class="hover:text-blue-300 text-lg" data-i18n="navbar.dashboard">Dashboard</a>
+          <button id="logoutBtn" class="logout-btn" style="display:none;">🚪 Logout</button>
+
+          <!-- Language Switcher -->
+          <div class="relative">
+            <button id="langBtn" class="p-2 hover:bg-blue-800 rounded-full flex items-center space-x-1">
+              <span>🌐</span>
+              <span id="currentLang">EN</span>
+            </button>
+            <ul id="langMenu" class="absolute top-10 right-0 bg-white text-black rounded shadow-md hidden">
+              <li data-lang="en" class="px-4 py-2 hover:bg-gray-200 cursor-pointer">English</li>
+              <li data-lang="hi" class="px-4 py-2 hover:bg-gray-200 cursor-pointer">हिंदी</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="md:hidden">
+          <button id="menu-btn" class="focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Links -->
+    <div id="mobile-menu" class="hidden md:hidden bg-blue-800">
+      <a href="#about" data-i18n="navbar.about" class="block px-4 py-2 hover:bg-blue-600">About</a>
+      <a href="#projects" data-i18n="navbar.projects" class="block px-4 py-2 hover:bg-blue-600">Projects</a>
+      <a href="#dashboard" data-i18n="navbar.dashboard" class="block px-4 py-2 hover:bg-blue-600">Dashboard</a>
+      <a href="#" id="langEnMobile" data-lang="en" class="block px-4 py-2 hover:bg-blue-600">English</a>
+      <a href="#" id="langHiMobile" data-lang="hi" class="block px-4 py-2 hover:bg-blue-600">हिंदी</a>
+    </div>
+  </nav>
+
+  <!-- Scrolling Quote Strip -->
+  <div class="quote-strip">
+    <p>
+      💧 SAVE WATER !! &nbsp; 💧 SAVE WATER !! &nbsp; 💧 SAVE WATER !! &nbsp; 💧 SAVE WATER !! &nbsp;
+      💧 SAVE WATER !! &nbsp; 💧 SAVE WATER !! &nbsp; 💧 SAVE WATER !! &nbsp; 💧 SAVE WATER !! &nbsp;
+    </p>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p>
+        <span class="highlight">"NEERAKSH"</span> is an initiative dedicated to water conservation.
+        We aim to promote sustainable practices, raise awareness, and involve the community in preserving our most
+        precious resource.
+      </p>
+    </div>
+
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <div class="carousel-track">
+        <!-- clones for looping -->
+        <img src="https://framerusercontent.com/images/DWHKk4HqjpymVbMLeJfqCpMlfqg.jpeg?scale-down-to=2048"
+          alt="Last clone">
+        <img
+          src="https://5.imimg.com/data5/SELLER/Default/2022/2/CT/JR/IQ/69609014/effluent-treatment-plant-1000x1000.JPG"
+          alt="Slide 1">
+        <img src="https://www.ipeglobal.com/wp-content/uploads/2024/09/Picture1.jpg" alt="Slide 2">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.C4VF4KtTUsQc_ODZ7dWJUgHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+          alt="Slide 3">
+        <img src="https://framerusercontent.com/images/DWHKk4HqjpymVbMLeJfqCpMlfqg.jpeg?scale-down-to=2048"
+          alt="Slide 4">
+        <img
+          src="https://5.imimg.com/data5/SELLER/Default/2022/2/CT/JR/IQ/69609014/effluent-treatment-plant-1000x1000.JPG"
+          alt="First clone">
+      </div>
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- RUIDP Section -->
+  <section id="ruidp" class="py-24 relative fade-in-section" style="background: var(--bg-primary);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div class="flex justify-center items-center gap-12 mb-6">
+        <img id="ruidpLogo" src="https://exto360.com/exto18/wp-content/uploads/2020/08/ruidplogo.png" alt="RUIDP Logo"
+          class="h-20 w-auto object-contain transform transition duration-300 hover:scale-110" />
+        <img id="rajLogo"
+          src="https://tse4.mm.bing.net/th/id/OIP.LiPsQ9b6nrU-RZaPtBNkuQHaEk?w=600&h=370&rs=1&pid=ImgDetMain&o=7&rm=3"
+          alt="Rajasthan Logo" class="h-20 w-auto object-contain transform transition duration-300 hover:scale-110" />
+      </div>
+
+      <h2 class="text-4xl font-bold text-center text-blue-400 mb-10">About RUIDP</h2>
+
+      <div class="grid md:grid-cols-2 gap-14 items-center">
+        <a href="https://lsg.urban.rajasthan.gov.in/content/raj/udh/ruidp/en/home.html" target="_blank"
+          rel="noopener noreferrer" class="tooltip">
+          <img
+            src="https://1.bp.blogspot.com/-Xpk3EH6cei8/YUWnADET5vI/AAAAAAAAAJQ/owc_iiyA95YYTZ4_kWjfQftQt42iNMjQACLcBGAsYHQ/s1378/RUIDP.jpeg"
+            alt="RUIDP Project Image"
+            class="rounded-2xl shadow-2xl mx-auto transform transition duration-300 hover:scale-105 cursor-pointer border border-gray-700" />
+          <span class="tooltip-text">Visit RUIDP Official Website</span>
+        </a>
+
+        <div>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            The <strong>Rajasthan Urban Infrastructure Development Project (RUIDP)</strong>
+            is a government initiative aimed at improving urban infrastructure and services across the state...
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed">
+            Through sustainable and modern infrastructure development, RUIDP works to ensure equitable access to clean
+            water...
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- phases Section -->
+  <section id="how-it-works" class="py-16 relative" style="min-height:83vh; background: var(--bg-secondary);">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-white mb-12">Phases of RUIDP</h2>
+        <a href="https://lsg.urban.rajasthan.gov.in/content/raj/udh/ruidp/en/ruidp-directory.html" target="_blank" rel="noopener noreferrer" class="block no-underline">
+          <div data-aos="fade-up"
+            class="bg-white/5 p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 relative overflow-hidden cursor-pointer border border-white/10">
+            <!-- Glow Circle -->
+            <div class="absolute inset-0 flex justify-center items-center">
+              <div class="w-24 h-24 bg-blue-400 rounded-full blur-2xl opacity-30 animate-pulse animate-drift"></div>
+            </div> <!-- Icon -->
+            <div class="relative flex justify-center mb-4"> <img
+                src="https://cdn-icons-png.flaticon.com/512/753/753318.png" alt="Step 1"
+                class="w-16 h-16 transition-transform duration-300 hover:scale-125 hover:rotate-6 relative z-10 filter invert">
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2 relative z-10">PHASE - 1</h3>
+            <p class="text-gray-300 relative z-10"> RUIDP focused on six major cities: Jaipur, Bikaner, Jodhpur, Ajmer,
+              Kota, and Udaipur. </p>
+          </div>
+        </a> <!-- Step 2 --> <a href="https://lsg.urban.rajasthan.gov.in/content/raj/udh/ruidp/en/ruidp-directory.html"
+          class="block no-underline">
+          <div data-aos="fade-up" data-aos-delay="100"
+            class="bg-white/5 p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 relative overflow-hidden cursor-pointer border border-white/10">
+            <div class="absolute inset-0 flex justify-center items-center">
+              <div class="w-24 h-24 bg-green-400 rounded-full blur-2xl opacity-30 animate-pulse animate-drift"></div>
+            </div>
+            <div class="relative flex justify-center mb-4"> <img
+                src="https://cdn-icons-png.flaticon.com/512/753/753318.png" alt="Step 2"
+                class="w-16 h-16 transition-transform duration-300 hover:scale-125 hover:rotate-6 relative z-10 filter invert">
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2 relative z-10">Phase - 2</h3>
+            <p class="text-gray-300 relative z-10"> 15 additional towns, including Alwar, Barmer, Bharatpur, Bundi,
+              Chittorgarh, Jaisalmer, Sikar, and others. </p>
+          </div>
+        </a> <!-- Step 3 --> <a href="https://lsg.urban.rajasthan.gov.in/content/raj/udh/ruidp/en/ruidp-directory.html"
+          class="block no-underline">
+          <div data-aos="fade-up" data-aos-delay="200"
+            class="bg-white/5 p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 relative overflow-hidden cursor-pointer border border-white/10">
+            <div class="absolute inset-0 flex justify-center items-center">
+              <div class="w-24 h-24 bg-purple-400 rounded-full blur-2xl opacity-30 animate-pulse animate-drift"></div>
+            </div>
+            <div class="relative flex justify-center mb-4"> <img
+                src="https://cdn-icons-png.flaticon.com/512/753/753318.png" alt="Step 3"
+                class="w-16 h-16 transition-transform duration-300 hover:scale-125 hover:rotate-6 relative z-10 filter invert">
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2 relative z-10">Phase - 3</h3>
+            <p class="text-gray-300 relative z-10"> covering 13 towns, such as Pali, Tonk, Sri Ganganagar, Jhunjhunu,
+              Hanumangarh, Bhilwara... </p>
+          </div>
+        </a> <!-- Step 4 --> <a href="https://lsg.urban.rajasthan.gov.in/content/raj/udh/ruidp/en/ruidp-directory.html"
+          class="block no-underline">
+          <div data-aos="fade-up" data-aos-delay="300"
+            class="bg-white/5 p-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 relative overflow-hidden cursor-pointer border border-white/10">
+            <div class="absolute inset-0 flex justify-center items-center">
+              <div class="w-24 h-24 bg-red-400 rounded-full blur-2xl opacity-30 animate-pulse animate-drift"></div>
+            </div>
+            <div class="relative flex justify-center mb-4"> <img
+                src="https://cdn-icons-png.flaticon.com/512/3094/3094856.png" alt="Step 4"
+                class="w-16 h-16 transition-transform duration-300 hover:scale-125 hover:rotate-6 relative z-10 filter invert">
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2 relative z-10">Phase - 4</h3>
+            <p class="text-gray-300 relative z-10"> targeting 14 additional towns: Sirohi, Abu Road, Kuchaman,
+              Sardarshahar, Banswara... </p>
+          </div>
+        </a> </div>
+    </div>
+  </section>
+  <!-- HOW IT WORKS interactive steps -->
+  <section class="how-it-works" id="how-neeraksh-works">
+    <div style="max-width:1000px;margin:0 auto;padding:40px 20px;">
+      <h2 class="text-3xl font-semibold text-center mb-6">How NEERAKSH Works</h2>
+
+      <div class="header-actions" style="justify-content:center;margin-bottom:20px;">
+        <div class="points-box">⭐ Points: <span id="points">0</span></div>
+      </div>
+
+      <div class="steps-progress" style="margin-bottom:18px;">
+        <div class="steps-progress-fill" id="progress-bar"></div>
+      </div>
+
+      <div class="flow-container" style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div class="flow-step" data-step="1">
+          <div class="step-header"><span class="icon">🔑</span></div>
+          <h3>Login / Sign Up</h3>
+          <span class="lock-icon">🔓</span>
+        </div>
+
+        <div class="flow-step locked" data-step="2">
+          <div class="step-header"><span class="icon">📸</span></div>
+          <h3>Upload Picture</h3>
+          <span class="lock-icon">🔒</span>
+        </div>
+
+        <div class="flow-step locked" data-step="3">
+          <div class="step-header"><span class="icon">📝</span></div>
+          <h3>About Your Picture</h3>
+          <span class="lock-icon">🔒</span>
+        </div>
+
+        <div class="flow-step locked" data-step="4">
+          <h3>Submit</h3>
+          <p>Final Submission</p>
+          <span class="lock-icon">🔒</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modals: Login / Upload / Details / Confirm -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLoginForm()">&times;</span>
+      <h2>Login with Phone</h2>
+
+      <form id="loginForm" onsubmit="return false;">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" placeholder="+91XXXXXXXXXX" required>
+
+        <div id="recaptcha-container"></div>
+
+        <button id="send-otp-btn" type="button">Send OTP</button>
+      </form>
+
+      <form id="otpForm" style="display:none;" onsubmit="return false;">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" placeholder="Enter 6-digit OTP" required>
+        <button id="verify-otp-btn" type="button">Verify OTP</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeUploadForm()">&times;</span>
+      <h2>Upload Picture</h2>
+      <form id="uploadForm" onsubmit="return false;">
+        <input type="file" id="picture" accept="image/*" required>
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="detailsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeDetailsForm()">&times;</span>
+      <h2>About Your Picture</h2>
+      <form id="detailsForm" onsubmit="return false;">
+        <label>Picture Title:</label>
+        <input type="text" id="title" required>
+        <label>Description:</label>
+        <textarea id="description" rows="4" required></textarea>
+        <button type="submit">Save Details</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeConfirmForm()">&times;</span>
+      <h2>Submission Confirmation</h2>
+      <p><strong>Title:</strong> <span id="confirmTitle"></span></p>
+      <p><strong>Description:</strong></p>
+      <p id="confirmDescription"></p>
+      <button id="finalizeBtn" type="button">Confirm & Submit</button>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <section class="dashboard" id="dashboard"
+    style="text-align:center; padding:110px 50px; background: var(--bg-primary);">
+    <div class="points-display" style="margin:30px 0; font-size:2.5rem; font-weight:800; color:#38bdf8;">
+      ⭐ Points: <span id="dashboardPoints">0</span>
+    </div>
+
+    <button id="downloadCertBtn" class="locked" disabled style="
+        padding:15px 30px;
+        font-family: 'Outfit';
+        font-size:1.2rem;
+        font-weight: 600;
+        border:none;
+        border-radius:12px;
+        background:rgba(255,255,255,0.1);
+        color:white;
+        cursor:not-allowed;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
+        transition: all 0.3s ease;">
+      🔒 Certificate Locked (Need 150+ points)
+    </button>
+  </section>
+
+  <footer class="fixed-footer">
+    <div class="footer-content">
+      <!-- Social icons -->
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><img
+            src="https://tse1.mm.bing.net/th/id/OIP.OVOxO59JpQLNyoiqkLriiwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="Facebook"></a>
+        <a href="https://linkedin.com" target="_blank"><img
+            src="https://freepnglogo.com/images/all_img/1715491541linkedin-logo-transparent.png" alt="LinkedIn"></a>
+        <a href="https://www.instagram.com/ruidp_1998?igsh=dmo5cWhvNjQ1dGcw" target="_blank"><img
+            src="https://cdn.jim-nielsen.com/watchos/512/instagram-2018-01-23.png" alt="Instagram"></a>
+      </div>
+
+      <!-- Footer info -->
+      <p>&copy; 2025 NEERAKSH. All rights reserved.
+        <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a>
+      </p>
+    </div>
+  </footer>
+  <!-- AOS and scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+
+  <!-- Firebase (Modular SDK) -->
+  <script type="module" src="js/main.js?v=4"></script>
+
+</body>
+
+</html>

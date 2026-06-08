@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase Test</title>
+</head>
+<body>
+  <h1>Firebase Test</h1>
+  <div id="log"></div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDhJgpvoB904jiOuMUS4OJ67Yj09vKwkPg",
+      authDomain: "neeraksh-1736.firebaseapp.com",
+      projectId: "neeraksh-1736",
+      storageBucket: "neeraksh-1736.appspot.com",
+      messagingSenderId: "196520322540",
+      appId: "1:196520322540:web:93b73e1f9e9f9670d64cc9",
+      measurementId: "G-QX5DRSXNDJ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    const logEl = document.getElementById("log");
+    function log(msg) {
+      console.log(msg);
+      logEl.innerHTML += msg + "<br/>";
+    }
+
+    async function runTest() {
+      try {
+        log("Testing File Upload...");
+        const fakeFile = new Blob(["test content"], { type: "text/plain" });
+        const fileRef = ref(storage, "submissions/test_uid/test_file.txt");
+        
+        // Timeout wrapper to detect hanging
+        const uploadPromise = uploadBytes(fileRef, fakeFile);
+        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout after 5 seconds")), 5000));
+        
+        await Promise.race([uploadPromise, timeoutPromise]);
+        
+        log("Upload bytes success!");
+        
+      } catch (e) {
+        log("Upload error: " + e.message);
+      }
+    }
+    runTest();
+  </script>
+</body>
+</html>
